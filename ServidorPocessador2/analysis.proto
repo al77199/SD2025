@@ -1,0 +1,24 @@
+﻿syntax = "proto3";
+
+package analysis;
+option csharp_namespace = "Analysis";
+
+// Pedido de análise: enviamos o CSV binário para cálculo
+message AnalysisRequest {
+  string wavy_id = 1;
+  bytes csv      = 2;
+}
+
+// Resposta: retorna estatísticas básicas do sensor
+message AnalysisResponse {
+  string wavy_id = 1;
+  double average = 2;
+  double minimum = 3;
+  double maximum = 4;
+}
+
+// Serviço gRPC de análise
+service AnalysisService {
+  // Analisa um CSV e devolve médias, mínimos e máximos
+  rpc Analyze (AnalysisRequest) returns (AnalysisResponse);
+}

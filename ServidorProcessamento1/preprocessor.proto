@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "PreProcess";
+
+package preprocess;
+
+message LoteRequest {
+  string wavyId = 1;
+  repeated string leiturasJson = 2;
+}
+
+message LoteResponse {
+  bool sucesso = 1;
+  bytes csv = 2;
+}
+
+service PreProcessService {
+  rpc ProcessarLote (LoteRequest) returns (LoteResponse);
+}
